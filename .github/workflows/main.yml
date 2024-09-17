@@ -14,4 +14,5 @@ jobs:
     - run: |
         echo "Log level: ${{ github.event.inputs.logLevel }}"
         echo "Tags: ${{ github.event.inputs.tags }}" 
-        exit 1
+        echo "${{ toJSON(github.event.inputs) }}"
+
