@@ -17,8 +17,13 @@ jobs:
         echo "${{ toJSON(github.event.inputs) }}"
         mkdir -p path/to/artifact
         echo "${{ toJSON(github.event.inputs) }}" > path/to/artifact/parameters.json
+        echo "${{ toJSON(github.event.inputs) }}" > path/to/artifact/parameters1.json
     - uses: actions/upload-artifact@v4
       with:
         name: my-artifact
         path: path/to/artifact/parameters.json
+    - uses: actions/upload-artifact@v4
+      with:
+        name: my-artifact1
+        path: path/to/artifact/parameters1.json
 
