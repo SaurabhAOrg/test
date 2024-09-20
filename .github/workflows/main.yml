@@ -1,0 +1,26 @@
+name: Workflow Dispatch - Final Approach
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  
+jobs:
+  call-bstack-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'BrowserStack Env Setup for Rerun'
+        id: setup_rerun_vars
+        uses: 'browserstack/github-actions/setup-env@O11y-Rerun'
+        with:
+          username: ${{ secrets.BROWSERSTACK_USERNAME }}
+          access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-app: 'gha-bstack-rerun[bot]'
+
+      - name: 'Use of BSTACK Environment Variables if Re-run'
+        run: |
+            echo "Env variable is: ${{ env.actor }}"
+            echo "Env variable is: ${{ env.variable1 }}"
+            echo "Env variable is: ${{ env }}"
